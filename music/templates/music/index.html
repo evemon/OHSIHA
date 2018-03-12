@@ -1,34 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-      <title>Dashboard</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+{% extends 'music/base.html' %}
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
+{% block body %}
 
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/music/">Dashboard</a>
-        </div>
-    </nav>
+  {% if all_albums %}
+  <h3>All albums:</h3>
+  <ul>
+    {% for album in all_albums %}
+      <li><a href="{% url 'music:details' album.id %}">{{ album.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <h3>There are no albums</h3>
+  {% endif %}
 
-      <div>
-    {% if all_albums %}
-    <h3>All albums:</h3>
-    <ul>
-      {% for album in all_albums %}
-        <li><a href="/music/{{ album.id }}/">{{ album.title }}</a></li>
-      {% endfor %}
-    </ul>
-    {% else %}
-      <h3>There are no albums</h3>
-    {% endif %}
-  </div>
-  </body>
-</html>
+{% endblock %}
