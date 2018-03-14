@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <html lang="en">
@@ -16,24 +17,20 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="{% url 'music:index' %}">Dashboard</a>
         </div>
-
-        {% if user.username %}
-        <ul class="nav navbar-nav navbar-right">
-          <li class="">
-            <a href="album/add/">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
-            </a>
-          </li>
-          <li class="">
-            <a href="">
-              <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>&nbsp; Logout
-            </a>
-          </li>
-        </ul>
-        {% endif %}
       </div>
     </nav>
-    {% block body %}
-    {% endblock %}
-  </body>
+    <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="con-sm-12 con-md-7">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3>You have logged out.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
 </html>

@@ -1,29 +1,57 @@
 {% extends 'music/base.html' %}
-
 {% block body %}
 
-  {% if all_albums %}
-  <h3>All albums:</h3>
-  <ul>
-    {% for album in all_albums %}
-      <li><a href="{% url 'music:details' album.id %}">{{ album.title }} - {{ album.artist }}</a></li>
+{% if user.is_authenticated %}
+    <p>Welcome {{ user.username }} !!!</p>
 
-      <form action="{% url 'music:album-delete' album.id %}" method='post' style="display: inline;">
-        {% csrf_token %}
-        <input type="hidden" name="album_id" value="{{ album.id }}"/>
-        <button type="submit" class="btn btn-danger btn-sm">
-            <span class="glyphicon glyphicon-trash"></span>
-        </button>
-      </form>
+    {% if all_albums %}
+    <h3>All albums:</h3>
+    <ul>
+      {% for album in all_albums %}
+        <li><a href="{% url 'music:details' album.id %}">{{ album.title }} - {{ album.artist }}</a></li>
 
-      <form action="{% url 'music:album-update' album.id %}" style="display: inline;">
-        <button type="Submit" class="btn btn-basic btn-sm">Update</button>
-      </form>
+        <form action="{% url 'music:album-delete' album.id %}" method='post' style="display: inline;">
+          {% csrf_token %}
+          <input type="hidden" name="album_id" value="{{ album.id }}"/>
+          <button type="submit" class="btn btn-danger btn-sm">
+              <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </form>
 
-    {% endfor %}
-  </ul>
-  {% else %}
-    <h3>There are no albums</h3>
-  {% endif %}
+        <form action="{% url 'music:album-update' album.id %}" style="display: inline;">
+          <button type="Submit" class="btn btn-basic btn-sm">Update</button>
+        </form>
 
-{% endblock %}
+      {% endfor %}
+    </ul>
+    {% else %}
+      <h3>There are no albums</h3>
+    {% endif %}
+{% else %}
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="con-sm-12 con-md-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3> Login</h3>
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {% include 'music/form-template.html' %}
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+    {% endblock %}

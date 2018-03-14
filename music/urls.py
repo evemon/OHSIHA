@@ -1,12 +1,20 @@
 
 from django.conf.urls import url
 from . import views
+from django.contrib.auth.views import logout
 
 app_name = 'music'
 
 urlpatterns = [
     #/music
     url(r'^$', views.IndexView.as_view(), name='index'),
+
+    #url(r'login/$', views.UserLoginView.as_view(), name='login'),
+
+    url(r'register/$', views.UserFormView.as_view(), name='register'),
+
+    #url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+
     #album details
     url(r'^(?P<pk>[0-9]+)/$', views.DetailsView.as_view(), name='details'),
 

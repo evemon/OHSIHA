@@ -17,11 +17,25 @@
           <a class="navbar-brand" href="{% url 'music:index' %}">Dashboard</a>
         </div>
 
-        {% if user.username %}
+        {% if user.is_authenticated %}
+        <h3>Hi {{ user.username }}</h3>
         <ul class="nav navbar-nav navbar-right">
           <li class="">
             <a href="album/add/">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
+            </a>
+          </li>
+          <li class="">
+            <a href="{% url 'logout' %} ">
+              <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>&nbsp; Logout
+            </a>
+          </li>
+        </ul>
+        {% else %}
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+            <a href="album/add/">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Register
             </a>
           </li>
           <li class="">
@@ -31,6 +45,7 @@
           </li>
         </ul>
         {% endif %}
+
       </div>
     </nav>
     {% block body %}
