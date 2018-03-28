@@ -9,15 +9,9 @@ urlpatterns = [
     #/music
     url(r'^$', views.IndexView.as_view(), name='index'),
 
-    #url(r'login/$', views.UserLoginView.as_view(), name='login'),
-
-    url(r'register/$', views.UserFormView.as_view(), name='register'),
-
-    #url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
 
     #album details
     url(r'^(?P<pk>[0-9]+)/$', views.DetailsView.as_view(), name='details'),
-
     #music/album/add
     url(r'album/add/$', views.CreateNew.as_view(), name='album-add'),
     #music/album/1/
