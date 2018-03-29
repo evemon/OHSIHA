@@ -1,5 +1,5 @@
 from django.views import generic
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
 
 class DetailsView(generic.DetailView):
     model = Album
-    template_name = 'music/details.html'
+    template_name = 'details.html'
 
 class CreateNew(CreateView):
     model = Album
