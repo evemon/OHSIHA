@@ -1,6 +1,31 @@
-{% extends 'base.html' %}
-{% block body %}
+<html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> {% block title %}Dashboard{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+        <h1>Welcome to Dashboard</h1>
+    </div>
 
-  <h1>Welcome to Dashboard!</h1>
+    <div class="text-center">
+        <h3>Start by creating an account or loggin in.</h1>
+    </div>
 
-{% endblock %}
+    <br>
+    <div class="text-center">
+      <form action="{% url 'login' %}" style="display: inline;">
+        <button type="Submit" class="btn btn-success btn-lg">Login</button>
+      </form>
+      <form action="{% url 'signup' %}" style="display: inline;">
+        <button type="Submit" class="btn btn-Info btn-lg">Signup</button>
+      </form>
+    </div>
+  </body>
+ </html>
+</html>
