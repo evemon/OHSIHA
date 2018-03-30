@@ -7,7 +7,7 @@ app_name = 'music'
 
 urlpatterns = [
     #/music
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', views.HomeView.as_view(), name='home'),
 
 
     #album details

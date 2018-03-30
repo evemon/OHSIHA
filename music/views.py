@@ -10,9 +10,9 @@ from .models import Album
 from .forms import UserForm
 
 
-class IndexView(generic.ListView):
+class HomeView(generic.ListView):
     #template_name = 'home.html'
-    template_name = 'index.html'
+    template_name = 'home.html'
     context_object_name = 'all_albums'
 
     def get_queryset(self):

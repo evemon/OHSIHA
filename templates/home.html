@@ -1,34 +1,34 @@
-{% extends 'music/base.html' %}
+{% extends 'base.html' %}
+{% block body %}
 
-{% block title %}Home{% endblock %}
+{% if user.is_authenticated %}
 
-  {% block content %}
-        {% if user.is_authenticated %}
-        <h3>Hi {{ user.username }}!</h3>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="">
-            <a href="album/add/">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
-            </a>
-          </li>
-          <li class="">
-            <a href="{% url 'login' %} ">
-              <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>&nbsp; Login
-            </a>
-          </li>
-        </ul>
-        {% else %}
-        <ul class="nav navbar-nav navbar-right">
-          <li class="">
-            <a href="music/album/add/">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Register
-            </a>
-          </li>
-          <li class="">
-            <a href="">
-              <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>&nbsp; Logout
-            </a>
-          </li>
-        </ul>
-        {% endif %}
-    {% endblock %}
+    <p>Welcome {{ user.username }} !!!</p>
+
+    {% if all_albums %}
+    <h3>All albums:</h3>
+    <ul>
+      {% for album in all_albums %}
+        <li><a href="{% url 'music:details' album.id %}">{{ album.title }} - {{ album.artist }}</a></li>
+
+        <form action="{% url 'music:album-delete' album.id %}" method='post' style="display: inline;">
+          {% csrf_token %}
+          <input type="hidden" name="album_id" value="{{ album.id }}"/>
+          <button type="submit" class="btn btn-danger btn-sm">
+              <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </form>
+
+        <form action="{% url 'music:album-update' album.id %}" style="display: inline;">
+          <button type="Submit" class="btn btn-basic btn-sm">Update</button>
+        </form>
+
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <h3>There are no albums</h3>
+    {% endif %}
+
+{% endif %}
+{% endblock %}
