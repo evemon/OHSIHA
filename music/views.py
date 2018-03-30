@@ -32,4 +32,4 @@ class Update(UpdateView):
 
 class Delete(DeleteView):
     model = Album
-    success_url = reverse_lazy('music:index')
+    success_url = reverse_lazy('music:home')
