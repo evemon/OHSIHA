@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^music/', include('music.urls')),
     url(r'^users/', include('users.urls')),
     url(r'^users/', include('django.contrib.auth.urls')),
+    url(r'^recipes/', include('recipes.urls')),
 ]

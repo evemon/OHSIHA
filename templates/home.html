@@ -2,7 +2,9 @@
 {% block body %}
 
 {% if user.is_authenticated %}
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
     <p>Welcome {{ user.username }} !!!</p>
 
     {% if all_albums %}
@@ -29,6 +31,9 @@
     {% else %}
       <h3>There are no albums</h3>
     {% endif %}
+  </div>
+</div>
+</div>
 
 {% endif %}
 {% endblock %}

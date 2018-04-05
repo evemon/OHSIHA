@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% if user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+
+      <h1>Search recipes</h1>
+      <br>
+      <form method="get">
+        <input type="text" name="dish">
+        <button type="submit">Search</button>
+      </form>
+      {% for key in item %}
+
+        <h3>{{key.title}}</h3>
+        <p>{{key.href}}</p>
+        <p>{{key.ingredients}}</p>
+        <p>{{key.thumbnail}}
+
+        {% endfor %}
+  </div>
+</div>
+</div>
+
+{% endif %}
+{% endblock %}
